@@ -11,7 +11,7 @@ A React Native/Expo app for learning German articles (der, die, das) with spaced
 - Progress tracking with AsyncStorage
 
 ## The app is not yet available for mobile, but incoming
-Web version with mobile layout ---> [HERE](https://german-articles-zeta.vercel.app/quiz) 
+Web version with mobile layout ---> [HERE](https://german-articles-zeta.vercel.app/) 
 
 ### Features to be added
 1) gamefied approach the user will be able to choose between a "test" of 10,25,50,100 words and the app will keep score of right/wrong answers
