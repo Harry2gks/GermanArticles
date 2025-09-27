@@ -1,5 +1,6 @@
 import { Stack } from 'expo-router';
 import Head from 'expo-router/head';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function Layout() {
   return (
