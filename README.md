@@ -18,5 +18,5 @@ Web version with mobile layout ---> [HERE](https://german-articles-zeta.vercel.a
 2) option to not show the same words
 3) user login with Auth
 4) save words w/ article and translation in a list and export in xls 
-5) translation API intergation
+5) translation API intergation for additional languages.
 6) click on a word and open a window in the browser that that uses the word in a sentence for better understanding / or in-app use of this feature
