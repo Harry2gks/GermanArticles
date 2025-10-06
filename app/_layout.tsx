@@ -1,10 +1,11 @@
 import { Stack } from 'expo-router';
 import Head from 'expo-router/head';
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { ThemeProvider } from '../lib/ThemeContext';
 
 export default function Layout() {
   return (
-    <>
+    <ThemeProvider>
       <Head>
         <style>{`
 :root {
@@ -20,7 +21,7 @@ body { background: var(--color-bg); color: var(--color-text); font-family: sans-
         `}</style>
       </Head>
       <Stack screenOptions={{ headerShown: false }} />
-    </>
+    </ThemeProvider>
   );
 }
 

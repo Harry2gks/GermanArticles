@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { View, Text, Pressable, Animated, Easing, Platform } from 'react-native';
-import { colors, shadows } from '../lib/theme';
+import { useTheme } from '../lib/ThemeContext';
+import { getShadows } from '../lib/theme';
+import { ThemeToggle } from '../components/ThemeToggle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { nextReview, CardState } from '../lib/srs';
 // Load data from the merged data.json file with single "words" array
@@ -64,6 +66,8 @@ const isWeb = Platform.OS === 'web' || (typeof window !== 'undefined' && window.
 const isMobile = !isWeb;
 
 export default function Quiz() {
+  const { colors, theme } = useTheme();
+  const shadows = getShadows(theme);
   const [progress, setProgress] = useState<Record<string, CardState>>({});
   const [nouns, setNouns] = useState<Noun[]>(buildNouns());
   const [idx, setIdx] = useState(0);
@@ -121,6 +125,9 @@ export default function Quiz() {
 
   return (
     <View style={{ flex: 1, padding: 24, justifyContent: 'center', gap: 24, backgroundColor: colors.background }}>
+      <View style={{ position: 'absolute', top: 50, right: 20 }}>
+        <ThemeToggle />
+      </View>
       <Text style={{ fontSize: 36, fontWeight: '700', textAlign: 'center', color: colors.textPrimary }}>{current.word}</Text>
       {!!current.translation && (
         <Text style={{ fontSize: 18, textAlign: 'center', color: colors.textSecondary }}>{current.translation}</Text>
@@ -140,15 +147,15 @@ export default function Quiz() {
             // Web: Use box shadow for feedback
             if (selected) {
               if (isSelected && isCorrect) {
-                shadowColor = '#1e7f34';
+                shadowColor = colors.correct;
                 shadowRadius = 12;
                 shadowOpacity = 0.8;
               } else if (isSelected && !isCorrect) {
-                shadowColor = '#a11b1b';
+                shadowColor = colors.wrong;
                 shadowRadius = 12;
                 shadowOpacity = 0.8;
               } else if (!isSelected && isCorrect && selected !== current.gender) {
-                shadowColor = '#1e7f34';
+                shadowColor = colors.correct;
                 shadowRadius = 12;
                 shadowOpacity = 0.8;
               }
@@ -157,11 +164,11 @@ export default function Quiz() {
             // Mobile: Use background color for feedback
             if (selected) {
               if (isSelected && isCorrect) {
-                bg = '#1e7f34'; // Green background
+                bg = colors.correct; // Green background
               } else if (isSelected && !isCorrect) {
-                bg = '#a11b1b'; // Red background
+                bg = colors.wrong; // Red background
               } else if (!isSelected && isCorrect && selected !== current.gender) {
-                bg = '#1e7f34'; // Green background for correct answer
+                bg = colors.correct; // Green background for correct answer
               }
             }
           }
