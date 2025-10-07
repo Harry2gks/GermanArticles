@@ -15,7 +15,7 @@ export const lightColors = {
   surface: '#F8F9FA',    // light gray surface
   textPrimary: '#212529', // dark text
   textSecondary: '#6C757D', // gray text
-  accent: '#007BFF',     // blue accent
+  accent: '#4684FB',     // blue accent for buttons
   correct: '#28A745',    // green for correct
   wrong: '#DC3545',      // red for wrong
 };

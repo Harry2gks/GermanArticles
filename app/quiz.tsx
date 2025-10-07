@@ -144,20 +144,14 @@ export default function Quiz() {
           
           // Platform-specific feedback styling
           if (isWeb) {
-            // Web: Use box shadow for feedback
+            // Web: Use background color for feedback (no box shadows in light mode)
             if (selected) {
               if (isSelected && isCorrect) {
-                shadowColor = colors.correct;
-                shadowRadius = 12;
-                shadowOpacity = 0.8;
+                bg = colors.correct; // Green background
               } else if (isSelected && !isCorrect) {
-                shadowColor = colors.wrong;
-                shadowRadius = 12;
-                shadowOpacity = 0.8;
+                bg = colors.wrong; // Red background
               } else if (!isSelected && isCorrect && selected !== current.gender) {
-                shadowColor = colors.correct;
-                shadowRadius = 12;
-                shadowOpacity = 0.8;
+                bg = colors.correct; // Green background for correct answer
               }
             }
           } else {
@@ -178,11 +172,6 @@ export default function Quiz() {
               key={c}
               style={{ 
                 transform: [{ scale: isWeb ? 1 : (isSelected ? 0.98 : 1) }], 
-                shadowColor,
-                shadowRadius,
-                shadowOpacity,
-                shadowOffset: { width: 0, height: 0 },
-                elevation: shadowRadius > 0 ? 8 : 0,
                 borderRadius: 8 
               }}
             >
@@ -228,16 +217,14 @@ export default function Quiz() {
                 {...(isWeb && {
                   onHoverIn: (e: any) => {
                     const t = (e?.target as unknown as HTMLElement) || null;
-                    if (t && shadowRadius === 0) {
+                    if (t) {
                       t.style.transform = 'translateY(-2px)';
-                      t.style.boxShadow = '0 4px 12px rgba(0, 122, 204, 0.3)';
                     }
                   },
                   onHoverOut: (e: any) => {
                     const t = (e?.target as unknown as HTMLElement) || null;
-                    if (t && shadowRadius === 0) {
+                    if (t) {
                       t.style.transform = 'translateY(0)';
-                      t.style.boxShadow = 'none';
                     }
                   }
                 })}
