@@ -41,7 +41,8 @@ function parseLineToNoun(line: string, index: number): Noun | null {
   if (!word) return null;
   const gender = article.startsWith('der') ? 'der' : article.startsWith('die') ? 'die' : 'das';
   const rawTrans = parts[2] ?? '';
-  const translation = String(rawTrans).split(',')[0]?.trim() || '';
+  // Show all translations separated by commas, not just the first one
+  const translation = String(rawTrans).trim() || '';
   return { id: `${gender}:${word}:${index}`, word, gender, translation };
 }
 
