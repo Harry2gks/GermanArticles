@@ -136,8 +136,8 @@ export default function Quiz() {
         {choices.map((c) => {
           const isCorrect = c === current.gender;
           const isSelected = selected === c;
-          // Base styles
-          let bg = colors.surface;
+          // Base styles - use accent color for buttons in light mode, surface in dark mode
+          let bg = theme === 'light' ? colors.accent : colors.surface;
           let shadowColor = 'transparent';
           let shadowRadius = 0;
           let shadowOpacity = 0;
@@ -229,7 +229,11 @@ export default function Quiz() {
                   }
                 })}
               >
-                <Text style={{ color: colors.textPrimary, fontSize: 18, fontFamily: 'sans-serif' }}>{c}</Text>
+                <Text style={{ 
+                  color: theme === 'light' ? '#FFFFFF' : colors.textPrimary, 
+                  fontSize: 18, 
+                  fontFamily: 'sans-serif' 
+                }}>{c}</Text>
               </Pressable>
             </Animated.View>
           );
