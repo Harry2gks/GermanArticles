@@ -22,7 +22,7 @@ export default function Home() {
             transform: pressed ? [{ scale: 0.95 }] : [{ scale: 1 }]
           }
         ]}>
-          <Text style={{ color: colors.background, fontWeight: '600' }}>Start Quiz</Text>
+          <Text style={{ color: '#FFFFFF', fontWeight: '600' }}>Start Quiz</Text>
         </Pressable>
       </Link>
     </View>
